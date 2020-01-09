@@ -43,7 +43,8 @@ def getLSZB(tabletyp):
     rows = flt_table.findAll('tr')
     
     # prepare json dict with empty array
-    timetable = []
+    timetable = {}
+    timetable['data'] = []
     
     for row in rows:
         entry = {}
@@ -60,6 +61,7 @@ def getLSZB(tabletyp):
             entry['direction'] = 'departure' if 'dep' in tabletyp.lower() else 'arrival'
             timetable.append(entry)
     
+            timetable['data'].append(entry)
     return timetable
 
 def writeJsonFile(filename, data):
